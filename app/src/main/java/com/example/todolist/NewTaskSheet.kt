@@ -61,5 +61,4 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
     }
 
 
-
 }
