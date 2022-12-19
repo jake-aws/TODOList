@@ -5,6 +5,7 @@ import android.graphics.Paint
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.databinding.TaskItemCellBinding
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class TaskItemViewHolder(
     private val context: Context,
@@ -13,7 +14,7 @@ class TaskItemViewHolder(
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val timeFormat = DateTimeFormatter.ofPattern("HH:MM")
+    private val timeFormat = DateTimeFormatter.ofPattern("HH:mm")
     fun bindTaskItem(taskItem: TaskItem){
         binding.name.text =taskItem.name
 

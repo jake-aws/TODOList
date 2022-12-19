@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.todolist.databinding.FragmentNewTaskSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.LocalTime
+import java.sql.Time
 
 class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
 
@@ -21,7 +22,7 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val activity = requireActivity()
         if (taskItem != null) {
             binding.tvTextTitle.text = "Edit Task"
             val editable = Editable.Factory.getInstance()
@@ -36,7 +37,6 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
         } else {
             binding.tvTextTitle.text = "New Task"
         }
-        val activity = requireActivity()
         taskViewModel = ViewModelProvider(activity).get(TaskViewModel::class.java)
         binding.addTaskBtn.setOnClickListener {
             addTask()
@@ -55,7 +55,7 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment() {
             dueTime = LocalTime.of(selectedHour, selectedMinute)
             updateTimeButtonText()
         }
-        val dialog = TimePickerDialog(activity, listener, dueTime!!.hour, dueTime!!.minute, false)
+        val dialog = TimePickerDialog(activity, listener, dueTime!!.hour, dueTime!!.minute, true)
         dialog.setTitle("Task Due Date")
         dialog.show()
     }
